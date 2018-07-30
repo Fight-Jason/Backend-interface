@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>首页</h1>
+
+    <form class="form">
+        账户：<input type="text" name="account" class="account">
+        <br/>
+        <br/> 密码：
+        <input type="password" name="password" class="password">
+        <br/>
+        <br/>
+        <button type="button" class="submit">提交</button>
+    </form>
+    <button type="button" class="get-session">获取seesion</button>
+    <script>
+        $(".submit").click(function() {
+            $.ajax({
+                url: "/login",
+                method: "post",
+                dataType: "json",
+                type: "json",
+                data: {
+                    account: $(".account").eq(0).val(),
+                    password: $(".password").eq(0).val(),
+                },
+                success(d) {
+                    console.log(d)
+                },
+                error() {
+
+                }
+            })
+        })
+
+        $(".get-session").click(function() {
+            $.ajax({
+                url: "/users",
+                method: "post",
+                dataType: "json",
+                type: "json",
+                success(d) {
+                    console.log(d)
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
